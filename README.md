@@ -53,6 +53,10 @@ contract Proxy {
 Whenever we want to update the implementation, we just deploy a new implementation contract and point the proxy towards the new implementation.
 All storage variables are stored in the proxy contract.
 
+### Delegate call Details
+
+When we're using delegateCall and updating the storage values of the proxy contract according to the implementation logic, we don't really care about the names of the state variables. We just need to make sure that they have the same types and that they fall under the same storage slot in both the proxy and implementation contract.
+
 
 ## Proxy Terminology
   1. The implementation contract:
@@ -91,7 +95,7 @@ Pros:
 Cons:
 - If you forget to add upgrading functions in the implementation contract, you're stuck
 
-### Diamond Patter
+### Diamond Pattern
 
 It allows for multiple implementation contracts. It also allows for smaller upgrades to be done.
 
