@@ -77,13 +77,13 @@ When we're using delegateCall and updating the storage values of the proxy contr
 
 3 implementation types
 
-### Transparent Proxy Pattern
+### 1. Transparent Proxy Pattern
 
 Admins can't call implementation contract functions. They can only call admin functions (functions that govern the upgrade, located in the proxy contract)
 Users only call implementation functions
 
 
-### Universal Upgradeable Proxies (UUPS)
+### 2. Universal Upgradeable Proxies (UUPS)
 
 This version of upgradeable contracts puts all the logic of upgrading in the implementation itself instead of the proxy.
 
@@ -95,7 +95,30 @@ Pros:
 Cons:
 - If you forget to add upgrading functions in the implementation contract, you're stuck
 
-### Diamond Pattern
+### 3. Diamond Pattern
 
 It allows for multiple implementation contracts. It also allows for smaller upgrades to be done.
 
+### EIP-1867: Standard Proxy Storage Slots
+
+Ethereum Improvement Proposal for having certain storage slots specifically used for proxies.
+
+For example:
+
+```
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.19;
+
+import "@openzeppelin/contracts/proxy/Proxy.sol";
+
+contract SmallProxy is Proxy {
+    // This is the keccak-256 hash of "eip1967.proxy.implementation" subtracted by 1
+    bytes32 private constant _IMPLEMENTATION_SLOT = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
+
+    function setImplementation(address newImplementation) public {
+        assembly {
+            sstore(_IMPLEMENTATION_SLOT, newImplementation)
+        }
+    }
+```
