@@ -10,7 +10,7 @@ Simplest way of "upgrading our smart contract". Parameterizing everything, so th
 
 Example: 
 
-```
+```solidity
 uint256 public reward;
 
 function setReward(uint256 _reward) public onlyOwner{
@@ -42,7 +42,7 @@ This combined with a fallback function can be used to delegate all calls through
 
 Example:
 
-```
+```solidity
 contract Proxy {
   fallback() external payable {
     address implementation = sload(0x3002...abc);
@@ -105,7 +105,7 @@ Ethereum Improvement Proposal for having certain storage slots specifically used
 
 For example:
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.19;
