@@ -45,8 +45,8 @@ Example:
 ```solidity
 contract Proxy {
   fallback() external payable {
-    address implementation = sload(0x3002...abc);
-    implementation.delegatecall.value(msg.value) (msg.data);
+    address implementation = payable(0x3002...abc);
+    implementation.delegatecall{msg.value}(msg.data);
 }
 ```
 
