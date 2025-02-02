@@ -114,7 +114,7 @@ Proxy contract stores the function selector with the corresponding facet address
 
 Upgradeability can be achieved by updating the facet address stored in the proxy contract.
 
-### EIP-1967: Standard Proxy Storage Slots
+## EIP-1967: Standard Proxy Storage Slots
 
 Ethereum Improvement Proposal for having certain storage slots specifically used for proxies. Used by both the Transparent Proxy Pattern and Universal Upgradeable Proxies (UUPS)
 
