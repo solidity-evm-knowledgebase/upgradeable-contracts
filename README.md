@@ -86,15 +86,13 @@ Admins can only call admin functions: functions in the proxy contract that gover
 
 ### 2. Universal Upgradeable Proxies (UUPS)
 
-This version of upgradeable contracts puts all the logic of upgrading in the implementation itself instead of the proxy.
+UUPS includes upgrade functionality in the implementation contract itself.
 
-Pros:
-- Gas Saver
-- Smaller Proxy
-- Solidity will detect function selector clashes
+The implementation contract has the "upgradeTo(address)" method.
 
-Cons:
-- If you forget to add upgrading functions in the implementation contract, you're stuck
+If the "upgradeTo(address)" is removed from a newer version, the contract becomes immutable, and no new versions can be deployed.
+
+Biggest pro is that Solidity can directly detect function selector clashes.
 
 ### 3. Diamond Pattern
 
