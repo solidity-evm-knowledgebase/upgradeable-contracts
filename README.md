@@ -2,7 +2,7 @@
 
 3 ways to upgrade a smart contract:
 
-1. Paramterization Method
+1. parameterization Method
 
 Simplest way of "upgrading our smart contract". Parameterizing everything, so that we can update the parameters at any point in time. Basically setter functions that change variables...
 - Can't add new storage
