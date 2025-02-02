@@ -106,11 +106,21 @@ Beneficial when multiple proxies point to the same implementation contract. When
 
 ### 4. Diamond Pattern
 
-It allows for multiple implementation contracts. It also allows for smaller upgrades to be done.
+Divides contracts into much smaller contracts (overcoming max contract size of 24kB)
 
-### EIP-1867: Standard Proxy Storage Slots
+Pattern comprises of a proxy contract and multiple smaller contracts called facets.
 
-Ethereum Improvement Proposal for having certain storage slots specifically used for proxies.
+Proxy contract stores the function selector with the corresponding facet address.
+
+Upgradeability can be achieved by updating the facet address stored in the proxy contract.
+
+### EIP-1967: Standard Proxy Storage Slots
+
+Ethereum Improvement Proposal for having certain storage slots specifically used for proxies. Used by both the Transparent Proxy Pattern and Universal Upgradeable Proxies (UUPS)
+
+Storage slot 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc(obtained as bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1)) is reserved for the implementation address.
+
+Storage slot 0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103 (obtained as bytes32(uint256(keccak256('eip1967.proxy.admin')) - 1)) is reserved for the admin address.
 
 For example:
 
