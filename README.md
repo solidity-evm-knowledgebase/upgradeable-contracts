@@ -75,12 +75,13 @@ When we're using delegateCall and updating the storage values of the proxy contr
 
 ## Implementations Of Proxy Contracts
 
-3 implementation types
-
 ### 1. Transparent Proxy Pattern
 
-Admins can't call implementation contract functions. They can only call admin functions (functions that govern the upgrade, located in the proxy contract)
-Users only call implementation functions
+Transparent Proxy Pattern includes the upgrade functionality in the proxy contract.
+
+The proxy contract should have the "upgradeTo(address)" method, which will update the address of the implementation contract.
+
+Admins can only call admin functions: functions in the proxy contract that govern the upgrade. Users can only call implementation functions. (Delegation of contract calls depends on the caller's address, delegated to implementation contract only if the caller is not a proxy admin).
 
 
 ### 2. Universal Upgradeable Proxies (UUPS)
