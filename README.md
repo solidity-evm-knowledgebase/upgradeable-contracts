@@ -94,7 +94,17 @@ If the "upgradeTo(address)" is removed from a newer version, the contract become
 
 Biggest pro is that Solidity can directly detect function selector clashes.
 
-### 3. Diamond Pattern
+### 3. Beacon Proxy Pattern:
+
+Comprises of 3 components: proxy contract, beacon contract, and implementation contract.
+
+Beacon contract stores the address of the implementation contract, while the proxy contract stores only the address of the beacon contract.
+
+User calls proxy contract --> proxy retrieves implementation address from beacon contract --> delegates the calls to implementation contract.
+
+Beneficial when multiple proxies point to the same implementation contract. When upgrading the implementation, we just need to update its address in the beacon contract (rather than in all the proxies).
+
+### 4. Diamond Pattern
 
 It allows for multiple implementation contracts. It also allows for smaller upgrades to be done.
 
